@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Front-IPA</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+  <main></main>
+
+</body>
+<script>
+  async function getContent() {
+    try {
+      const response = await fetch('http://localhost:3333/')
+      // console.log(response)
+      const data = await response.json()
+      console.log(data);
+      show(data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getContent()
+
+  function show(users) {
+    console.log(users);
+    let output = "";
+
+    for (let user of users) {
+      output += `<li>${user.name}</li>`
+    }
+
+    document.querySelector('main').innerHTML = output
+  }
+</script>
+
+</html>
